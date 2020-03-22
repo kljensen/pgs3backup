@@ -64,5 +64,6 @@ pg_dump $POSTGRES_HOST_OPTS $POSTGRES_DATABASE > postgres.dump
 echo "Uploading dump to $S3_BUCKET"
 
 aws $AWS_ARGS s3 cp postgres.dump s3://$S3_BUCKET/$S3_PREFIX/${S3_OBJECT_NAME}_$(date +"%Y-%m-%dT%H:%M:%SZ").dump || exit 2
+rm postgres.dump
 
 echo "SQL backup uploaded successfully"
